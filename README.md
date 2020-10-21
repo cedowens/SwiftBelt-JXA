@@ -21,7 +21,9 @@ To run locally from a Terminal:
 
 1. edit the final line of code from "return results" to "console.log(results)"
 
-2. From Terminal run: **% osascript SwiftBelt-JXA.js**
+2. After final curly brace, add "SwiftBelt()" to invoke the SwiftBelt function.
+
+3. From Terminal run: **% osascript SwiftBelt-JXA.js**
 
 To run remotely via Mythic:
 
