@@ -1,5 +1,5 @@
 # SwiftBelt-JXA
-This is JXA implementation of some SwiftBelt functions. I did not port over all functions, but the likely most useful functions:
+This is JXA implementation of some SwiftBelt functions (SwiftBelt is a macOS system enumerator that was originally written in Swift. Here is a link to that repo for more info: https://github.com/cedowens/SwiftBelt). Even though this project does not include any Swift (only JavaScript and ObjC), I kept the same name for simplicity for the time being. I did not port over all SwiftBelt functions, but the likely most useful functions:
 
 - Check for Security tools
 
