@@ -1,3 +1,4 @@
+// Written by Cedric Owens @cedowens
 function SwiftBelt () {
 ObjC.import('Cocoa');
 ObjC.import('Foundation');
