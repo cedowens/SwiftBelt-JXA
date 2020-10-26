@@ -15,6 +15,8 @@ This is JXA implementation of some SwiftBelt functions (SwiftBelt is a macOS sys
 
 - zsh history
 
+- Basic Slack enumeration
+
 ----------------
 
 To run locally from a Terminal:
