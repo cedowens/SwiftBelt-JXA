@@ -19,6 +19,16 @@ This is JXA implementation of some SwiftBelt functions (SwiftBelt is a macOS sys
 
 ----------------
 
+**If run from a sandboxed app, the following checks will work:**
+
+- Enumerate Running Apps
+
+- System Info
+
+- Security Tools Check
+
+----------------
+
 To run locally from a Terminal:
 
 1. edit the final line of code from "return results" to "console.log(results)"
