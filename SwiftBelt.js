@@ -163,6 +163,9 @@ results += "#######################################\n";
 
 //-----------SystemInfo-----------------
 results += "=====>System Info Check:\n";
+
+try {
+
 var curruser = currentApp.systemInfo().shortUserName;
 results += "[+] Current username: " + curruser + "\n\n";
 var machinename = ObjC.deepUnwrap($.NSHost.currentHost.localizedName);
@@ -244,11 +247,15 @@ if (fileMan.fileExistsAtPath(azpath)){
 	}
 
 }
-
+}catch(err){
+	results += err;
+	results += "\n";
+}
 results += "#######################################\n";
 
 //-----------Running Apps-----------------
 results += "=====>Running Apps:\n";
+try{
 var appsinfo = $.NSWorkspace.sharedWorkspace.runningApplications.js;
 var appsinfo2 = [];
 for(let i = 0; i < appsinfo.length; i++){
@@ -257,7 +264,10 @@ for(let i = 0; i < appsinfo.length; i++){
 	results += "\n";
 
 }
-
+} catch(err){
+	results += err;
+	results += "\n";
+}
 results += "#######################################\n";
 
 //-----------Zsh History-----------------
