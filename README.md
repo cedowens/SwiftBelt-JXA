@@ -17,6 +17,8 @@ This is JXA implementation of some SwiftBelt functions (SwiftBelt is a macOS sys
 
 - Basic Slack enumeration
 
+- Firefox cookies
+
 ----------------
 
 **If run from a sandboxed app, the following checks will work:**
