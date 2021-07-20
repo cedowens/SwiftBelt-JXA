@@ -432,10 +432,8 @@ results += "#######################################\n";
 }
 
 
-//console.log(results)
 
 return results
 
 }
 
-SwiftBelt()
