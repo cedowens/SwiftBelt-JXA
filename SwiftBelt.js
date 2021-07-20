@@ -20,11 +20,11 @@ try{
 	var size = handle.seekToEndOfFile;
 	var conv = this.toString(size);
 	if (size == null){
-		results += '[+] Terminal has NOT yet been given FDA\n';
+		results += '[-] Terminal has NOT yet been given FDA\n';
 		results += "#######################################\n";
 	}
 	else {
-		results += '[-] Terminal HAS ALREADY been given FDA! Size of the user TCC.db file is ' + size + '\n';
+		results += '[+] Terminal HAS ALREADY been given FDA! Size of the user TCC.db file is ' + size + '\n';
 		results += "#######################################\n";
 	}
 }
