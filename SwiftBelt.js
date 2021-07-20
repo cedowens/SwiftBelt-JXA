@@ -5,11 +5,35 @@ ObjC.import('stdlib');
 ObjC.import('OSAKit');
 ObjC.import('OpenDirectory');
 ObjC.import('sqlite3');
-ObjC.bindFunction('CFMakeCollectable', ['id', ['void *'] ]);
 var currentApp = Application.currentApplication();
 currentApp.includeStandardAdditions = true;
 var fileMan = $.NSFileManager.defaultManager;
 var results = "";
+
+//----------Full Disk Access Check-------------
+results += "#######################################\n";
+results += "Full Disk Access Check\n";
+var username = $.NSUserName().js
+try{
+	var dbpath = '/Users/' + username + '/Library/Application\ Support/com.apple.TCC/TCC.db'
+	var handle = $.NSFileHandle.fileHandleForReadingAtPath(dbpath);
+	var size = handle.seekToEndOfFile;
+	var conv = this.toString(size);
+	if (size == null){
+		results += '[+] Terminal has NOT yet been given FDA\n';
+		results += "#######################################\n";
+	}
+	else {
+		results += '[-] Terminal HAS ALREADY been given FDA! Size of the user TCC.db file is ' + size + '\n';
+		results += "#######################################\n";
+	}
+}
+catch(error){
+		results += error
+		results += '\n';
+		results += "#######################################\n";
+		
+	}
 
 //-----------SecCheck-----------------
 var runapps = $.NSWorkspace.sharedWorkspace.runningApplications.js;
@@ -23,7 +47,6 @@ for(let i = 0; i < runapps.length; i++){
 
 var allapps = applist.toString();
 var b = 0;
-results += "#######################################\n";
 results += "=====>Security Tools Check:\n";
 if ((allapps.includes("CbOsxSensorService")) || (fileMan.fileExistsAtPath("/Applications/CarbonBlack/CbOsxSensorService"))){
 	results += "[+] Carbon Black Sensor installed.\n";
@@ -414,3 +437,5 @@ results += "#######################################\n";
 return results
 
 }
+
+SwiftBelt()
