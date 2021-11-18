@@ -369,6 +369,36 @@ if (fileMan.fileExistsAtPath(swPath)){
 
 }
 
+
+
+
+//----------List Of Installers and Apps------------------
+var output = "";
+var fileMan = $.NSFileManager.defaultManager;
+var err;
+var username = $.NSUserName().js
+var ipath = '/private/var/db/receipts';
+if (fileMan.fileExistsAtPath(ipath)){
+        results += "\n[+] Info on installers and apps:\n";
+        let items = ObjC.deepUnwrap(fileMan.contentsOfDirectoryAtPathError(ipath,$()));
+        try{
+                for (p=0; p < items.length; p++){
+                        results += items[p] + '\n';
+
+                }
+
+
+
+        }
+
+catch(err){
+        results += err;
+}
+results += "#######################################\n";
+}
+
+
+
 //----------firefox cookies------------------
 var output = "";
 var fileMan = $.NSFileManager.defaultManager;
@@ -433,7 +463,9 @@ results += "#######################################\n";
 
 
 
+
 return results
 
 }
 
+SwiftBelt()
