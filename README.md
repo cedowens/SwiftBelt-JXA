@@ -25,6 +25,8 @@ SwiftBelt-JXA captures the following:
 
 - Basic Slack enumeration
 
+- /private/var/db/receipts listing
+
 - Firefox cookies
 
 ----------------
