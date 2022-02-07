@@ -42,11 +42,13 @@ SwiftBelt-JXA captures the following:
 
 ## To run remotely via Mythic:
 
-Download this SwiftBelt-JXA.js and via Mythic:
+Download this SwiftBelt-JXA.js and via Mythic run:
 
-1. **jsimport SwiftBelt.js**
-2. **jsimport_call Checks('function1,function2,function3,function4....')**
-3. Example: **jsimport_call Checks('SysInfo,RunningApps,TCCCheck')**
+1. > **jsimport SwiftBelt.js**
+2. > **jsimport_call Checks('function1,function2,function3,function4....')**
+3. Example: 
+
+> jsimport_call Checks('SysInfo,RunningApps,TCCCheck')
 
 ## List of all available functions:
 1. TCCCheck
