@@ -34,7 +34,7 @@ SwiftBelt-JXA captures the following:
 
 ## To run locally from a Terminal:
 
-1. edit the script and add **SwiftBelt()** at the bottom after the last curly brace
+1. edit the script and uncomment the line containing **Checks('All')** at the bottom after the last curly brace. You can edit 'All' to list one or more individual functions as desired (ex: **Checks('TCCCheck,SysInfo')**).
 
 2. From Terminal run:  
 
@@ -45,5 +45,18 @@ SwiftBelt-JXA captures the following:
 Download this SwiftBelt-JXA.js and via Mythic:
 
 1. **jsimport SwiftBelt.js**
-2. **jsimport_call SwiftBelt()**
-3. Results will be returned in Mythic
+2. **jsimport_call Checks('function1,function2,function3,function4....')**
+3. Example: **jsimport_call Checks('SysInfo,RunningApps,TCCCheck')**
+
+## List of all available functions:
+1. TCCCheck
+2. SecCheck
+3. SysInfo
+4. CredSearch
+5. RunningApps
+6. History
+7. SlackSearch
+8. InstalledApps
+9. FirefoxCookies
+
+
