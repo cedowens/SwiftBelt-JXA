@@ -13,7 +13,7 @@ SwiftBelt-JXA captures the following:
 
 - Basic System Info
 
-- Checks to see if the machine is at a lock screen or not (Note: this is the only SwiftBelt JXA function that does run a shell command. Must be run separately with Checks('LockCheck'), as I did not include this in the Checks('All') call.)
+- Checks to see if the machine is at a lock screen or not (**Note: this is the only SwiftBelt JXA function that does run a shell command. Must be run separately with Checks('LockCheck'), as I did not include this in the Checks('All') call.**)
 
 - Local Azure cred check
 
@@ -51,6 +51,10 @@ Download this SwiftBelt-JXA.js and via Mythic run:
 3. Example: 
 
 > jsimport_call Checks('SysInfo,RunningApps,TCCCheck')
+
+4. Run all checks (except the LockCheck function): 
+
+> jsimport_call Checks('All')
 
 ## List of all available functions:
 1. TCCCheck
