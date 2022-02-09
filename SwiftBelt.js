@@ -547,9 +547,6 @@ if (options == "All"){
 	var1 = TCCCheck();
 	outstring += var1;
 
-	var10 = LockCheck();
-	outstring += var10;
-
 	var2 = SecCheck();
 	outstring += var2;
 
