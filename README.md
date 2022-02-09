@@ -13,6 +13,8 @@ SwiftBelt-JXA captures the following:
 
 - Basic System Info
 
+- Checks to see if the machine is at a lock screen or not (Note: this is the only SwiftBelt JXA function that does run a shell command. Must be run separately with Checks('LockCheck'), as I did not include this in the Checks('All') call.)
+
 - Local Azure cred check
 
 - Local ssh cred check
@@ -60,5 +62,6 @@ Download this SwiftBelt-JXA.js and via Mythic run:
 7. SlackSearch
 8. InstalledApps
 9. FirefoxCookies
+10. LockCheck
 
 
