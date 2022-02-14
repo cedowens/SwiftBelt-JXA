@@ -453,7 +453,6 @@ function Checks(options){
 
 		var script = `
 		#!/bin/bash
-		#this leveraged this idea from reading https://www.generacodice.com/en/articolo/4525879/osx-check-if-the-screen-is-locked
 		p=$(ioreg -n Root -d1 -a | grep CGSSession)
 		if [[ "$p" == *"CGSSessionScreenIsLocked"* ]]; then
 		        echo "[+] Screen is currently LOCKED"
