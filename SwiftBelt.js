@@ -660,7 +660,7 @@ else {
 }
 
 
-Checks('All')
+//Checks('All')
 
 //Mythic usage:
 //jsimport SwiftBelt-JXA.js
