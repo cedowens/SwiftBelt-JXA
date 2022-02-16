@@ -13,6 +13,8 @@ SwiftBelt-JXA captures the following:
 
 - Basic System Info
 
+- Checks for current callback context (helpful for knowing whether you are in the context of Terminal, an installer package, an app, or a launch item callback...this info is especially helpful when it comes to knowing what TCC permissions you have. If in the context of Terminal, I have a separate repo for checking TCC permissions to ~/Desktop, ~/Documents, and ~/Downloads: https://github.com/cedowens/Spotlight-Enum-Kit)
+
 - Checks to see if the machine is at a lock screen or not (**Note: this is the only SwiftBelt JXA function that does run a shell command. Must be run separately with Checks('LockCheck'), as I did not include this in the Checks('All') call.**)
 
 - Checks for the default browser
