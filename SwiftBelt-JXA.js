@@ -610,6 +610,7 @@ return results
 		var err;
 		var username = $.NSUserName().js
 		var stickiespath = '/Users/' + username + '/Library/Containers/com.apple.Stickies/Data/Library/Stickies/';
+		results += "=====> Checking for Sticky Notes:\n";
 		if (fileMan.fileExistsAtPath(stickiespath)){
 			let sticky_files = ObjC.deepUnwrap(fileMan.contentsOfDirectoryAtPathError(stickiespath,$()));
 			if (sticky_files.length > 1){ // This accounts for .SavedStickiesState (the sticky plist)
