@@ -20,12 +20,12 @@ function Checks(options){
 			var size = handle.seekToEndOfFile;
 			var conv = this.toString(size);
 			if (size == null){
-				results += '[-] Terminal has NOT yet been given FDA\n';
+				results += '[-] Your current app context has NOT yet been given FDA\n';
 				results += "#######################################\n";
 				return results
 			}
 			else {
-				results += '[+] Terminal HAS ALREADY been given FDA! Size of the user TCC.db file is ' + size + '\n';
+				results += '[+] Your current app context HAS ALREADY been given FDA! Size of the user TCC.db file is ' + size + '\n';
 				results += "#######################################\n";
 				return results
 			}
@@ -597,7 +597,6 @@ return results
 		catch(err){
 		}
 		results += "#######################################\n";
-		console.log(results)
 		return results
 		}
 	}
@@ -655,69 +654,49 @@ return results
 		results += "#######################################\n";
 		return results;
 	}
-
-	///////////////////////
-
-if (options == "All"){
+	if (options == "All"){
 	var1 = TCCCheck();
 	outstring += var1;
-
 	var2 = SecCheck();
 	outstring += var2;
-
 	var3 = SysInfo();
 	outstring += var3;
-
 	var4 = CredSearch();
 	outstring += var4;
-
 	var5 = RunningApps();
 	outstring += var5;
-
 	var6 = History();
 	outstring += var6;
-
 	var7 = SlackSearch();
 	outstring += var7;
-
 	var8 = SlackSearch();
 	outstring += var8;
-
 	var9 = FirefoxCookies();
 	outstring += var9;
-
 	var10 = StickyNotes();
 	outstring += var10;
-
 }
 else {
-
 	if (options.includes("TCCCheck")){
 		var1 = TCCCheck();
 		outstring += var1;
 	}
-
 	if (options.includes("LockCheck")){
 		var10 = LockCheck();
 		outstring += var10;
 	}
-
 	if (options.includes('SecCheck')){
 		var2 = SecCheck();
 		outstring += var2;
 	}
-
 	if (options.includes("SysInfo")){
 		var3 = SysInfo();
 		outstring += var3;
 	}
-
-
 	if (options.includes("CredSearch")){
 		var4 = CredSearch();
 		outstring += var4;
 	}
-
 	if (options.includes("RunningApps")){
 		var5 = RunningApps();
 		outstring += var5;
@@ -734,7 +713,7 @@ else {
 	}
 
 	if (options.includes("InstalledApps")){
-		var8 = SlackSearch();
+		var8 = InstalledApps();
 		outstring += var8;
 	}
 
@@ -744,8 +723,8 @@ else {
 	}
 	
 	if (options.includes("StickyNotes")){
-		var10 = StickyNotes();
-		outstring += var10;
+		var11 = StickyNotes();
+		outstring += var11;
 	}
 }
 
