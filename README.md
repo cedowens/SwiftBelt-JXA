@@ -34,6 +34,7 @@ SwiftBelt-JXA captures the following:
 - /private/var/db/receipts listing
 
 - Firefox cookies
+- Stickie Note contents (if any stickie notes are open)
 
 ----------------
 
@@ -71,5 +72,6 @@ Download this SwiftBelt-JXA.js and via Mythic run:
 8. InstalledApps
 9. FirefoxCookies
 10. LockCheck
+11. StickyNotes
 
 
