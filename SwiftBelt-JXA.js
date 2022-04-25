@@ -540,6 +540,48 @@ return results
 
 	}
 
+/////////////////////
+        function TextEditCheck(){
+                var results = "";
+		var fileMan = $.NSFileManager.defaultManager;
+		var err;
+		var username = $.NSUserName().js;
+		var path = "/Users/" + username + "/Library/Containers/com.apple.TextEdit/Data/Library/Autosave Information";
+		var tcanary = 0;
+
+		if (fileMan.fileExistsAtPath(path)){
+			results += "\nTextEdit autosave temp dir found...checking for unsaved TextEdit documents...\n";
+			try {
+				var dirContents = ObjC.deepUnwrap(fileMan.contentsOfDirectoryAtPathError(path,$()));
+				if (dirContents.length > 1){
+					for (p=0; p<dirContents.length; p++){
+						if (dirContents[p].endsWith(".rtf")){
+							tcanary += 1;
+							var contents = $.NSString.stringWithContentsOfFileEncodingError(path + "/" + dirContents[p],$.NSNEXTSTEPStringEncoding, $()).js;
+							results += "\nUnsaved TextEdit file contents:\n";
+							results += contents
+							results += "\n\n";
+						}
+					}
+				}
+				if (tcanary == 0){
+					results += "\n";
+					results += "[-] No unsaved TextEdit documents found...\n";
+				}
+			}
+			catch(err){
+				results += "\n";
+				results += err;
+				results += "\n";
+
+			}
+		}
+
+return results
+
+        }
+
+
 
 	function FirefoxCookies(){
 		var results = "";
@@ -675,6 +717,8 @@ return results
 	outstring += var9;
 	var10 = StickyNotes();
 	outstring += var10;
+	var11 = TextEditCheck();
+	outstring += var11;
 }
 else {
 	if (options.includes("TCCCheck")){
@@ -726,6 +770,11 @@ else {
 		var11 = StickyNotes();
 		outstring += var11;
 	}
+	
+	if (options.includes("TextEditCheck")){
+		var12 = TextEditCheck();
+		outstring += var12;
+	}
 }
 
 
@@ -754,3 +803,4 @@ else {
 //FirefoxCookies
 //LockCheck
 //StickyNotes
+//TextEditCheck
