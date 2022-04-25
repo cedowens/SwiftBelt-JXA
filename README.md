@@ -13,7 +13,7 @@ SwiftBelt-JXA captures the following:
 
 - Basic System Info
 
-- Checks for TCC Accessibility Permissions
+- Checks for Accessibility TCC Permissions
 
 - Checks for current callback context (helpful for knowing whether you are in the context of Terminal, an installer package, an app, or a launch item callback...this info is especially helpful when it comes to knowing what TCC permissions you have. If in the context of Terminal, I have a separate repo for checking TCC permissions to ~/Desktop, ~/Documents, and ~/Downloads: https://github.com/cedowens/Spotlight-Enum-Kit)
 
@@ -37,6 +37,7 @@ SwiftBelt-JXA captures the following:
 
 - Firefox cookies
 - Stickie Note contents (if any stickie notes are open)
+- Checks for unsaved TextEdit files and if present reads the contents of those files
 
 ----------------
 
