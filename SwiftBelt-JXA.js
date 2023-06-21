@@ -89,7 +89,7 @@ function Checks(options){
 		        b = 1;
 		}
 
-		if ((allapps.includes("SentinelOne")) || (allapps.includes("sentinelone"))){
+		if ((allapps.includes("SentinelOne")) || (allapps.includes("sentinelone")) || (allapps.includes("SentinelAgent"))){
 		        results += "[+] Sentinel One agent found.\n";
 		        b = 1;
 		}
